@@ -8,17 +8,23 @@
 
 <title>
   
-    Hexo
+    算法竞赛入门经典
   
 </title>
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://hydlink.github.io/index.html">
+<meta name="description" content="Ch7 暴力求解法按字典序排列不使用 STL 的情况下，按从小到大的顺序遍历当前没有被使用过的元素 S，把元素放进当前排列数组 A的当前元素位置 cur，递归向下继续搜索，并且当前顺序下依然遍历中，在递归后，被覆写的 A 的范围，不会被当前遍历所访问到，因此子递归并不影响如果达到集合终点，把之前所有的数组打印出来 1234567891011121314151617181920212223&#x2F;&#x2F; 考虑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法竞赛入门经典">
+<meta property="og:url" content="http://hydlink.github.io/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Ch7 暴力求解法按字典序排列不使用 STL 的情况下，按从小到大的顺序遍历当前没有被使用过的元素 S，把元素放进当前排列数组 A的当前元素位置 cur，递归向下继续搜索，并且当前顺序下依然遍历中，在递归后，被覆写的 A 的范围，不会被当前遍历所访问到，因此子递归并不影响如果达到集合终点，把之前所有的数组打印出来 1234567891011121314151617181920212223&#x2F;&#x2F; 考虑">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="http://hydlink.github.io/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/pics/EightQueen.png">
+<meta property="article:published_time" content="2020-03-05T14:32:17.441Z">
+<meta property="article:modified_time" content="2020-03-05T14:32:17.451Z">
 <meta property="article:author" content="来自过去的银弹">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hydlink.github.io/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/pics/EightQueen.png">
 
 
   <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -154,35 +160,26 @@
       
         <div style="max-width: 1000px">
       
-          
-
+          <article id="post-算法竞赛入门经典" class="article article-type-post">
+  
+    <h1 class="article-header">
+      算法竞赛入门经典
+    </h1>
   
   
-    <div class="post-list">
-  
 
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/" >
-  算法竞赛入门经典
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/"><span class="article-date">
+  <div class="article-info">
+    <span class="article-date">
   2020-03-05
 </span>
-</a>
-        
 
-        
+    
 
-      </div>
-      <div class="article-entry">
-        
-          <h2 id="Ch7-暴力求解法"><a href="#Ch7-暴力求解法" class="headerlink" title="Ch7 暴力求解法"></a>Ch7 暴力求解法</h2><h3 id="按字典序排列"><a href="#按字典序排列" class="headerlink" title="按字典序排列"></a>按字典序排列</h3><p>不使用 STL 的情况下，按从小到大的顺序遍历当前<strong>没有被使用过的元素 S</strong>，<br>把元素放进<strong>当前排列数组 A</strong>的<strong>当前元素位置 cur</strong>，递归向下继续搜索，<br>并且当前顺序下依然遍历中，在递归后，被覆写的 <strong>A</strong> 的范围，不会被当前遍历所访问到，因此子递归并不影响<br>如果达到集合终点，把之前所有的数组打印出来</p>
+    
+
+  </div>
+  <div class="article-entry">
+    <h2 id="Ch7-暴力求解法"><a href="#Ch7-暴力求解法" class="headerlink" title="Ch7 暴力求解法"></a>Ch7 暴力求解法</h2><h3 id="按字典序排列"><a href="#按字典序排列" class="headerlink" title="按字典序排列"></a>按字典序排列</h3><p>不使用 STL 的情况下，按从小到大的顺序遍历当前<strong>没有被使用过的元素 S</strong>，<br>把元素放进<strong>当前排列数组 A</strong>的<strong>当前元素位置 cur</strong>，递归向下继续搜索，<br>并且当前顺序下依然遍历中，在递归后，被覆写的 <strong>A</strong> 的范围，不会被当前遍历所访问到，因此子递归并不影响<br>如果达到集合终点，把之前所有的数组打印出来</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 考虑递归覆写的问题，可以忽略掉后续递归覆写的数据范围</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_sorted_perm</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> *A, <span class="keyword">int</span> cur)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cur == n) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d, "</span>, A[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> ok = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 因为只检测 数组中 0-cur</span></span><br><span class="line">        <span class="comment">// 范围内的值，所以后续递归，即便是覆写，也不会存在任何问题</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> j = <span class="number">0</span>; j &lt; cur; j++) &#123;</span><br><span class="line">            <span class="comment">// 查找 A 数组中是否包含当前数字，如果包含，则跳过当前数字</span></span><br><span class="line">            <span class="keyword">if</span> (A[j] == i)</span><br><span class="line">                ok = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ok) &#123;</span><br><span class="line">            A[cur] = i;</span><br><span class="line">            print_sorted_perm(n, A, cur + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>也可以使用 STL 中的函数，<code>next_permutation</code>，它在数组已经有序的状况下，更改末尾处，让元素不断与最开始无序的元素的之前的元素进行倒转返回，生成新的排列，直到集合彻底倒序，返回 false</p>
@@ -209,61 +206,29 @@
 
 <h4 id="应用-素数环"><a href="#应用-素数环" class="headerlink" title="应用 - 素数环"></a>应用 - 素数环</h4><p>一个小细节是，我们要注意素数环从 1 开始，而数组下标从 0 开始，<br>最好给自己下个规定，数组就从 0 开始，元素取当前索引 + 1</p>
 
-        
-      </div>
-    </div>
-
-  
-    </div>
-  
-
-  
-  
-    <div class="post-list">
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2020/03/05/hello-world/" >
-  Hello World
-</a>
-
-      </h3>
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.z" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
       
-
-      <div class="article-info">
-        <a href="/2020/03/05/hello-world/"><span class="article-date">
-  2020-03-05
-</span>
-</a>
+          <img src="/images/cc/by.png">
         
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
 
-        
 
-      </div>
-      <div class="article-entry">
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+    
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+  </footer>
+</article>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-        
-      </div>
-    </div>
-
-  
-    </div>
-  
 
 
 
