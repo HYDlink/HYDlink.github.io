@@ -8,7 +8,7 @@
 
 <title>
   
-    Archive: 2020/3
+    彙整: 2020/3
   
 </title>
 
@@ -87,21 +87,21 @@
           
             
               <li class="category-list-container">
-                <a href="javascript:;">Category</a>
+                <a href="javascript:;">類別</a>
                 
               </li>
             
           
             
               <li class="tag-list-container">
-                <a href="javascript:;">Tag</a>
-                
+                <a href="javascript:;">標籤</a>
+                <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lua/" rel="tag">Lua</a><span class="tag-list-count">1</span></li></ul>
               </li>
             
           
             
               <li class="archive-list-container">
-                <a href="javascript:;">Archive</a>
+                <a href="javascript:;">彙整</a>
                 <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">2</span></li></ul>
               </li>
             
@@ -171,6 +171,87 @@
 
     <div class="post-list-item article">
       <h3 class="article-header">
+        <a href="/2020/03/09/OOP-in-Lua/" >
+  OOP in Lua
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/03/09/OOP-in-Lua/"><span class="article-date">
+  2020-03-09
+</span>
+</a>
+        
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <h2 id="从类-表-中实例化"><a href="#从类-表-中实例化" class="headerlink" title="从类(表)中实例化"></a>从类(表)中实例化</h2><p>因为<code>__index</code>的存在,  可以将一个表的原型设置为当前的表, 这个过程只不过是<code>setmetatable(o, {__index = Class}</code>, 之后返回这个新表</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base.new</span><span class="params">(o)</span></span></span><br><span class="line">    <span class="keyword">local</span> o = o <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">    <span class="built_in">setmetatable</span>(o, &#123;<span class="built_in">__index</span> = Base&#125;)</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>但是这样有一点点缺陷, 每次都会创建一个这样的表, 有点麻烦, 我们可以单纯的使用<code>Base.__index = Base</code>, 然后将Base本身作为元表就好了</p>
+<p>当然, 我们可以把这个函数改为冒号形式, 函数体中的Base改为关键字<code>self</code>, 这样即便本身并不是 <code>Base</code> 的表, 通过元表获取并调用这个方法的时候, 还是将自身作为 <code>self</code> 传递到new中, 返回直接继承自身而不是Base的表, 也就是, 和基类无关</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base:new</span><span class="params">(o)</span></span></span><br><span class="line">    <span class="keyword">local</span> o = o <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">    self.<span class="built_in">__index</span> = self</span><br><span class="line">    <span class="built_in">setmetatable</span>(o, self)</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>其实更方便地, 为了让后面的可自定义初始化, 我们可以把 设置元表 和 初始化 的方法分开<br>就成了下面这样, 继承<code>Base</code>的类 还可以只自定义 init, 而不用更改已经既定的 <code>new</code> 过程</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base:new</span><span class="params">(o)</span></span></span><br><span class="line">    <span class="keyword">local</span> o = o <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">    self.<span class="built_in">__index</span> = self</span><br><span class="line">    <span class="built_in">setmetatable</span>(o, self)</span><br><span class="line">    o:init()</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base:init</span><span class="params">()</span></span></span><br><span class="line">    self.x = <span class="number">0</span></span><br><span class="line">    self.y = <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>静态变量</strong>：在类表中一开始就声明定义, 并且在new方法中, 不进行复制和更改罢了, 让新建的对象保持对这个变量的持续引用, 称作<em>公共变量</em>更加合适吧</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Base = &#123;</span><br><span class="line">    static = <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Base:new() &#123;</span><br><span class="line">    self.<span class="built_in">__index</span> = self</span><br><span class="line">    <span class="keyword">local</span> o = o <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">    o.example = </span><br><span class="line">    <span class="comment">-- init other variables for o --</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>如上的代码, 当一个table <code>Derive</code>使用了<code>Base:new()</code>, 这样他可以作为一个新的原型, 当又一个table <code>D2</code>, 使用<code>Derive:new()</code>, 因为self的缘故, 这里的self就是Derive, 这样一来, 为Derive添加可覆盖的方法, 可以做到继承</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Base = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base.Print</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"This is Base"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base:new</span><span class="params">(o)</span></span></span><br><span class="line">    <span class="keyword">local</span> o = o <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">    self.<span class="built_in">__index</span> = self <span class="comment">-- 即便设置了__index, 但它并没有元表</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">getmetatable</span>(self)) <span class="comment">-- 用于确认当前的元表是什么, 来判断当前的类</span></span><br><span class="line">    <span class="built_in">setmetatable</span>(o, self)</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Derive = Base:new()</span><br><span class="line">ex = Base:new()</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Derive.Print</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"This is Derive"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">D2 = Derive:new()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">D2.Print</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"This is D2"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">D2.Print()</span><br></pre></td></tr></table></figure>
+
+<h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><p>简单的, 就是把<code>__index(self, k)</code>改为访问一个基类列表的所有基类, 这个的<code>k</code>成员是否存在的函数, 如果存在, 则返回相应的值</p>
+<h2 id="接口-Interface-Mixins"><a href="#接口-Interface-Mixins" class="headerlink" title="接口 Interface Mixins"></a>接口 Interface Mixins</h2><p>其实就是多继承了一个只有函数的表, 如果这个Interface 必须要求实现的话, 可以在默认Interface的函数实现中, 抛出一个 <code>error(&#39;not implemented&#39;)</code><br>当然实现方法可以是遍历 Interface 中的函数, 然后把他赋值到自己的表中</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Object:implement</span><span class="params">(...)</span></span></span><br><span class="line">  <span class="keyword">for</span> _, cls <span class="keyword">in</span> <span class="built_in">pairs</span>(&#123;...&#125;) <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">pairs</span>(cls) <span class="keyword">do</span></span><br><span class="line">      <span class="keyword">if</span> self[k] == <span class="literal">nil</span> <span class="keyword">and</span> <span class="built_in">type</span>(v) == <span class="string">"function"</span> <span class="keyword">then</span></span><br><span class="line">        self[k] = v</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="私有化"><a href="#私有化" class="headerlink" title="私有化"></a>私有化</h2><p>在new函数里面创建函数和状态, 返回一个表, 让要公开的函数映射到表中, 不放在表中的内容则为私有</p>
+<h2 id="对偶表示"><a href="#对偶表示" class="headerlink" title="对偶表示"></a>对偶表示</h2><p>从表中使用键获取值, 改为 从一个数值表中以表作为键来获取对应的值<br>之后也在这个数据表中获取值, 让这个数据表变为一个模块的local变量, 也就是私有化, 能做到一定的封装<br>但是存在一个问题, 即便是对象表被销毁了, 数值表中对应对象表的值并没有销毁, 这时候需要垃圾收集</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">table</span>[key] = value</span><br><span class="line">value[<span class="built_in">table</span>] = key</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><h3 id="classic-lua"><a href="#classic-lua" class="headerlink" title="classic.lua"></a><a href="https://github.com/rxi/classic" target="_blank" rel="noopener">classic.lua</a></h3><ul>
+<li><code>Extend</code> - 约定, 以 <code>__</code> 开头的函数, 为可覆盖/重用的虚函数, 直接复制到新的对象cls, 其他内容使用metatable, 设置超集, 并且在 cls 写下记录 <code>cls.super = self</code></li>
+<li><code>new</code> - 用户自定义, 只是单纯的初始化, 叫做 <code>init</code> 更合适</li>
+<li><code>__call</code> - 这个就是用户调用的新建对象的方法了, 直接使用 <code>newclass = Class()</code>, 来新建一个对象, 其实是新建一个元表是 <code>Class</code> 的空表, 然后对这个空表, 调用 <code>new</code>, 来初始化, 最后返回, 这个是适当的做法</li>
+<li><code>is</code> - 递归 <code>getmetatable</code>, 不断检测和特定 class 是否一致</li>
+<li><code>Implement</code> - 接受可变参数指示多个Interface表, 对每个Interface表, 将其所有函数复制到自身, 这个。。不检测函数重名啊</li>
+</ul>
+<h3 id="hump-class"><a href="#hump-class" class="headerlink" title="hump.class"></a><a href="https://github.com/vrld/hump/" target="_blank" rel="noopener">hump.class</a></h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">include_helper</span><span class="params">(to, from, seen)</span></span></span><br><span class="line">	<span class="keyword">if</span> from == <span class="literal">nil</span> <span class="keyword">then</span></span><br><span class="line">		<span class="keyword">return</span> to</span><br><span class="line">	<span class="keyword">elseif</span> <span class="built_in">type</span>(from) ~= <span class="string">'table'</span> <span class="keyword">then</span></span><br><span class="line">		<span class="keyword">return</span> from</span><br><span class="line">	<span class="keyword">elseif</span> seen[from] <span class="keyword">then</span></span><br><span class="line">		<span class="keyword">return</span> seen[from]</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	seen[from] = to</span><br><span class="line">	<span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">pairs</span>(from) <span class="keyword">do</span></span><br><span class="line">		k = include_helper(&#123;&#125;, k, seen) <span class="comment">-- keys might also be tables</span></span><br><span class="line">		<span class="keyword">if</span> to[k] == <span class="literal">nil</span> <span class="keyword">then</span></span><br><span class="line">			to[k] = include_helper(&#123;&#125;, v, seen)</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">return</span> to</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- deeply copies `other' into `class'. keys in `other' that are already</span></span><br><span class="line"><span class="comment">-- defined in `class' are omitted</span></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">include</span><span class="params">(class, other)</span></span></span><br><span class="line">	<span class="keyword">return</span> include_helper(class, other, &#123;&#125;)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- returns a deep copy of `other'</span></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">clone</span><span class="params">(other)</span></span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">setmetatable</span>(include(&#123;&#125;, other), <span class="built_in">getmetatable</span>(other))</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>因为 table 和 function 在lua中, 单纯使用赋值运算符, 得到的是引用/地址, 因此如果要deep copy, 需要遍历并且递归表中的元素来进行拷贝</p>
+<ul>
+<li><code>include_helper(to, from, seen)</code> 这个递归代码… 其实就是将<code>from</code>表中所有的值都逐个递归拷贝到<code>to</code>中, 如果<code>from</code>中的键包含表, 那么将这个表进行拷贝, 如果<code>from</code>的值是个表, 建立一个空的表作为递归的<code>to</code>参数, 对其进行拷贝并返回</li>
+<li><code>include(class, other)</code> 使用<code>include_helper</code>递归函数, 进行拷贝后返回</li>
+<li><code>clone(other)</code> 使用<code>include</code>, 新建一个other的深拷贝</li>
+<li><code>new</code> 和<code>classic.lua</code>的<code>__call</code>逻辑一致, 新建一个表, 然后对其调用<code>init</code>方法来初始化, </li>
+</ul>
+<h3 id="middleclass-lua"><a href="#middleclass-lua" class="headerlink" title="middleclass.lua"></a><a href="https://github.com/kikito/middleclass" target="_blank" rel="noopener">middleclass.lua</a></h3><p><a href="https://github.com/kikito/middleclass/wiki/Mixins" target="_blank" rel="noopener">https://github.com/kikito/middleclass/wiki/Mixins</a></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><a href="https://love2d.org/wiki/Simple_Educative_Class_Library" target="_blank" rel="noopener">https://love2d.org/wiki/Simple_Educative_Class_Library</a></p>
+<p>其他的之后用到在写了, 目前用到这么多足够了</p>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
         <a href="/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/" >
   算法竞赛入门经典
 </a>
@@ -216,52 +297,6 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1 代表使用过</span></span><br><span class="line"><span class="keyword">int</span> v[<span class="number">3</span>][<span class="number">50</span>]; <span class="comment">// 保存 当前行，当前对角线，当前副对角线 是否有被占据</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">search_faster</span><span class="params">(<span class="keyword">int</span> cur)</span> </span>&#123;</span><br><span class="line">    ++nc;</span><br><span class="line">    <span class="keyword">if</span> (cur == n) &#123;</span><br><span class="line">        ++tot;</span><br><span class="line">        for_each(C, C + n, [](<span class="keyword">int</span> x) &#123; <span class="built_in">printf</span>(<span class="string">"%d "</span>, x + <span class="number">1</span>); &#125;);</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> ok = <span class="number">1</span>;</span><br><span class="line">            C[cur] = i;</span><br><span class="line">            <span class="comment">// 行，副对角线，对角线（因为对角线单纯相减会超出边界的-(n-1)数量，因此使用 + n 来偏移</span></span><br><span class="line">            <span class="keyword">if</span> (!(v[<span class="number">0</span>][i] || v[<span class="number">1</span>][cur + i] || v[<span class="number">2</span>][cur - i + n])) &#123;</span><br><span class="line">                v[<span class="number">0</span>][i] = v[<span class="number">1</span>][cur + i] = v[<span class="number">2</span>][cur - i + n] = <span class="number">1</span>;</span><br><span class="line">                search_faster(cur + <span class="number">1</span>);</span><br><span class="line">                <span class="comment">// 记得替换回来</span></span><br><span class="line">                v[<span class="number">0</span>][i] = v[<span class="number">1</span>][cur + i] = v[<span class="number">2</span>][cur - i + n] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="应用-素数环"><a href="#应用-素数环" class="headerlink" title="应用 - 素数环"></a>应用 - 素数环</h4><p>一个小细节是，我们要注意素数环从 1 开始，而数组下标从 0 开始，<br>最好给自己下个规定，数组就从 0 开始，元素取当前索引 + 1</p>
-
-        
-      </div>
-    </div>
-
-  
-
-  
-  
-    
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2020/03/05/hello-world/" >
-  Hello World
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2020/03/05/hello-world/"><span class="article-date">
-  2020-03-05
-</span>
-</a>
-        
-
-        
-
-      </div>
-      <div class="article-entry">
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
         
       </div>
