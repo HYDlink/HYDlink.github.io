@@ -60,10 +60,6 @@
   <div class="header">
     <h1 class="title"><a href="/">银弹的个人博客</a></h1>
     
-      <p class="subtitle">
-        银弹的个人博客
-      </p>
-    
     <div class="info">
       <div class="content">
         
@@ -102,7 +98,7 @@
             
               <li class="archive-list-container">
                 <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">2</span></li></ul>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">3</span></li></ul>
               </li>
             
           
@@ -166,6 +162,83 @@
           <h1><a href="/archives/2020" class="archive-year">2020</a></h1>
         </div>
         <div class="post-list">
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2020/03/10/Love2D-Input%E7%BB%91%E5%AE%9A%E5%AE%9E%E7%8E%B0/" >
+  Love2D Input绑定实现
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/03/10/Love2D-Input%E7%BB%91%E5%AE%9A%E5%AE%9E%E7%8E%B0/"><span class="article-date">
+  2020-03-10
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="Input-lua-实现"><a href="#Input-lua-实现" class="headerlink" title="Input.lua 实现"></a><a href="https://github.com/adonaac/boipushy" target="_blank" rel="noopener">Input.lua</a> 实现</h1><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ol>
+<li>函数绑定到按键</li>
+<li>设置按键别名</li>
+<li>检测持续按下, 包括 从按下到开始检测的<code>delay</code> 和 经过<code>interval</code>再确认pressed是否正确</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>保存一个键位表 <code>Input.all_keys</code>, 和 love 的键位表完全一致</p>
+<p><code>binds</code> 以用户设置的<em>按键别名</em>为键, <em>按键集合</em>为值<br>保存针对不同按键而设立的表</p>
+<ol>
+<li><code>functions</code> 按键按下就会被唤醒</li>
+<li><code>state</code> 当前按键是否按下</li>
+<li><code>prev_state</code> 上次更新的时候按键是否按下</li>
+<li><code>repeat_state</code> 检测持续按下的时候, <ol>
+<li>上次按键按下并响应的时间点<code>pressed_time</code></li>
+<li>delay的长度</li>
+<li>当前的状态, 是否还处于delay检测, <code>delay_stage</code></li>
+<li>按键响应的间隔<code>interval</code></li>
+</ol>
+</li>
+</ol>
+<p>如此一来, 检查按键是否是当前更新突然按下的, 就是使用 <code>self.state[key] and not self.prev_state[key]</code></p>
+<h3 id="按键绑定"><a href="#按键绑定" class="headerlink" title="按键绑定"></a>按键绑定</h3><p>接受<code>key</code>和<code>action</code>参数<br>可以选择绑定到函数, 或者是字符串<br>检查<code>action</code>参数类型, 如果是函数, 那么将<code>functions</code>表的键<code>key</code>设置成这个参数<br>如果是字符串, 将字符串添加到<code>binds</code>对应的键的表中, 如果<code>binds[key]</code>不存在, 则先新建一个</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:bind</span><span class="params">(key, action)</span></span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(action) == <span class="string">'function'</span> <span class="keyword">then</span> self.functions[key] = action; <span class="keyword">return</span> <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> self.binds[action] <span class="keyword">then</span> self.binds[action] = &#123;&#125; <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">table</span>.<span class="built_in">insert</span>(self.binds[action], key)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>取消绑定<code>key</code>, 以<code>key</code>为参数, 也是一种合理的方法啦,<br>如果要取消绑定<code>action</code>, 直接<code>self.binds[action] = nil</code><br>按道理来说, 用户是有需要, 看到 action 绑定了哪些 key, 并且可以删除他们的, 所以<code>self.binds</code>是一个可以暴露的数据结构</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:unbind</span><span class="params">(key)</span></span></span><br><span class="line">    <span class="keyword">for</span> action, keys <span class="keyword">in</span> <span class="built_in">pairs</span>(self.binds) <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">for</span> i = #keys, <span class="number">1</span>, <span class="number">-1</span> <span class="keyword">do</span></span><br><span class="line">            <span class="keyword">if</span> key == self.binds[action][i] <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">table</span>.<span class="built_in">remove</span>(self.binds[action], i)</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span> self.functions[key] <span class="keyword">then</span></span><br><span class="line">        self.functions[key] = <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:unbindAll</span><span class="params">()</span></span></span><br><span class="line">    self.binds = &#123;&#125;</span><br><span class="line">    self.functions = &#123;&#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="检查按键是否按下"><a href="#检查按键是否按下" class="headerlink" title="检查按键是否按下"></a>检查按键是否按下</h3><p>简单方法<code>pressed</code><br><code>pressed</code>方法中有两个功能</p>
+<ol>
+<li>不传入<code>action</code>参数的情况下, 所有按下的按键，如果绑定了函数，就会被调用<br>这个过程在<code>update</code>已经被设置了, 用户无需调用</li>
+<li>检测<code>action</code>是否被按下, 就和之前说的, 通过<code>self.state[key] and not self.prev_state[key]</code><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:pressed</span><span class="params">(action)</span></span></span><br><span class="line">    <span class="keyword">if</span> action <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">for</span> _, key <span class="keyword">in</span> <span class="built_in">ipairs</span>(self.binds[action]) <span class="keyword">do</span></span><br><span class="line">            <span class="keyword">if</span> self.state[key] <span class="keyword">and</span> <span class="keyword">not</span> self.prev_state[key] <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">for</span> _, key <span class="keyword">in</span> <span class="built_in">ipairs</span>(Input.all_keys) <span class="keyword">do</span></span><br><span class="line">            <span class="keyword">if</span> self.state[key] <span class="keyword">and</span> <span class="keyword">not</span> self.prev_state[key] <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">if</span> self.functions[key] <span class="keyword">then</span></span><br><span class="line">                    self.functions[key]()</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>多功能方法<code>down</code><br>接收三个参数, <code>Input:down(action, interval, delay)</code><br><code>repeat_state</code>中, </p>
+<h3 id="回调hook"><a href="#回调hook" class="headerlink" title="回调hook"></a>回调hook</h3><p>新建自己Input的回调函数, 并且 hook 到 love 的回调函数中, <code>love[&#39;keypressed&#39;]</code>等同于<code>love.keypressed</code><br>这个过程在 new 的时候就被设置, </p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> callbacks = &#123;<span class="string">'keypressed'</span>, <span class="string">'keyreleased'</span>, <span class="string">'mousepressed'</span>, <span class="string">'mousereleased'</span>, <span class="string">'gamepadpressed'</span>, <span class="string">'gamepadreleased'</span>, <span class="string">'gamepadaxis'</span>, <span class="string">'wheelmoved'</span>, <span class="string">'update'</span>&#125;</span><br><span class="line"><span class="keyword">local</span> old_functions = &#123;&#125;</span><br><span class="line"><span class="keyword">local</span> empty_function = <span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> _, f <span class="keyword">in</span> <span class="built_in">ipairs</span>(callbacks) <span class="keyword">do</span></span><br><span class="line">    old_functions[f] = love[f] <span class="keyword">or</span> empty_function</span><br><span class="line">    love[f] = <span class="function"><span class="keyword">function</span><span class="params">(...)</span></span></span><br><span class="line">        old_functions[f](...)</span><br><span class="line">        self[f](self, ...)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">-- self的回调函数之后通过设置元表也可以</span></span><br><span class="line"><span class="keyword">return</span> <span class="built_in">setmetatable</span>(self, Input)</span><br></pre></td></tr></table></figure>
+
+<h3 id="callback-按键检测"><a href="#callback-按键检测" class="headerlink" title="callback 按键检测"></a>callback 按键检测</h3><p><code>&lt;device&gt;pressed</code> 和 <code>&lt;device&gt;released</code> 函数<br>pressed 被调用, 则设置该按键的<code>state</code>表值为<code>true</code><br>released 被调用, 则设置该按键的<code>state</code>表值为<code>false</code>, 以及取消重复检测的表<code>repeat_state</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:keypressed</span><span class="params">(key)</span></span></span><br><span class="line">    self.state[key] = <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:keyreleased</span><span class="params">(key)</span></span></span><br><span class="line">    self.state[key] = <span class="literal">false</span></span><br><span class="line">    self.repeat_state[key] = <span class="literal">false</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="callback-update"><a href="#callback-update" class="headerlink" title="callback - update"></a>callback - update</h3><p>调用<code>self:pressed()</code>,<br>会更新<code>repeat_state</code>,<br>    如果在<code>delay_stage</code>, 检查是否超出<code>delay</code>时长并取消<code>delay_stage</code><br>    检查距离上次按键响应的时间是否超出<code>interval</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:update</span><span class="params">()</span></span></span><br><span class="line">    self:pressed()</span><br><span class="line">    self.prev_state = copy(self.state)</span><br><span class="line">    self.state[<span class="string">'wheelup'</span>] = <span class="literal">false</span></span><br><span class="line">    self.state[<span class="string">'wheeldown'</span>] = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">pairs</span>(self.repeat_state) <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> v <span class="keyword">then</span></span><br><span class="line">            v.pressed = <span class="literal">false</span> </span><br><span class="line">            <span class="keyword">local</span> t = love.timer.getTime() - v.pressed_time</span><br><span class="line">            <span class="keyword">if</span> v.delay_stage <span class="keyword">then</span> </span><br><span class="line">                <span class="keyword">if</span> t &gt; v.delay <span class="keyword">then</span> </span><br><span class="line">                    v.pressed = <span class="literal">true</span> </span><br><span class="line">                    v.pressed_time = love.timer.getTime()</span><br><span class="line">                    v.delay_stage = <span class="literal">false</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">if</span> t &gt; v.interval <span class="keyword">then</span></span><br><span class="line">                    v.pressed = <span class="literal">true</span></span><br><span class="line">                    v.pressed_time = love.timer.getTime()</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>最后还有<code>joystick</code>的绑定这里没讲, 回去拿了手柄再来测试一下吧</p>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
     
   
 
