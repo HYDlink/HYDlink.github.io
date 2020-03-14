@@ -1,485 +1,72 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Archives: 2020 | 银弹的个人博客</title><meta name="description" content=""><meta name="author" content="来自过去的银弹"><meta name="copyright" content="来自过去的银弹"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Archives: 2020"><meta name="twitter:description" content=""><meta name="twitter:image" content="http://hydlink.github.io/img/avatar.png"><meta property="og:type" content="website"><meta property="og:title" content="Archives: 2020"><meta property="og:url" content="http://hydlink.github.io/archives/2020/"><meta property="og:site_name" content="银弹的个人博客"><meta property="og:description" content=""><meta property="og:image" content="http://hydlink.github.io/img/avatar.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = '1'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
 
 
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
 
-<title>
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="http://hydlink.github.io/archives/2020/"><link rel="preload" href="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/archive.jpg" as="image"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: false
   
-    Archive: 2020
-  
-</title>
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="银弹的个人博客">
-<meta property="og:url" content="http://hydlink.github.io/archives/2020/index.html">
-<meta property="og:site_name" content="银弹的个人博客">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="来自过去的银弹">
-<meta name="twitter:card" content="summary">
-
-
-  <link rel="alternative" href="/atom.xml" title="银弹的个人博客" type="application/atom+xml">
-
-
-
-  <link rel="icon" href="/favicon.png">
-
-
-
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
-
-
-<link rel="stylesheet" href="/styles/main.css">
-
-
-
-
-
-
-
-<meta name="generator" content="Hexo 4.2.0"></head>
-<body
-  
-    class="monochrome"
-  
-  >
-  <div class="mobile-header">
-  <button class="sidebar-toggle" type="button">
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-  </button>
-  <a class="title" href="/">银弹的个人博客</a>
-</div>
-
-  <div class="main-container">
-    <div class="sidebar">
-  <div class="header">
-    <h1 class="title"><a href="/">银弹的个人博客</a></h1>
-    
-    <div class="info">
-      <div class="content">
-        
-        
-          <div class="author">来自过去的银弹</div>
-        
-      </div>
-      
-        <div class="avatar">
-          
-            <a href="/about"><img src="https://avatars3.githubusercontent.com/u/32926102?s=460&amp;v=4"></a>
-          
-        </div>
-      
-    </div>
-  </div>
-  <div class="body">
-    
-      
-        <ul class="nav">
-          
-            
-              <li class="category-list-container">
-                <a href="javascript:;">Category</a>
-                
-              </li>
-            
-          
-            
-              <li class="tag-list-container">
-                <a href="javascript:;">Tag</a>
-                <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lua/" rel="tag">Lua</a><span class="tag-list-count">1</span></li></ul>
-              </li>
-            
-          
-            
-              <li class="archive-list-container">
-                <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">3</span></li></ul>
-              </li>
-            
-          
-        </ul>
-      
-        <ul class="nav">
-          
-            
-              <li>
-                <a href="/" title="Homepage" external="false">Homepage</a>
-              </li>
-            
-          
-            
-              <li>
-                <a href="/archives" title="By Year" external="false">By Year</a>
-              </li>
-            
-          
-        </ul>
-      
-        <ul class="nav">
-          
-            
-              <li>
-                <a href="https://github.com/denjones/hexo-theme-chan" title="Chan" target="_blank" rel="noopener">Chan</a>
-              </li>
-            
-          
-            
-              <li>
-                <a href="https://github.com/denjones" title="Github" target="_blank" rel="noopener">Github</a>
-              </li>
-            
-          
-            
-              <li>
-                <a href="/atom.xml" title="RSS" external="false">RSS</a>
-              </li>
-            
-          
-        </ul>
-      
-    
-  </div>
-</div>
-
-    <div class="main-content">
-      
-        <div style="max-width: 1000px">
-      
-          
-
-  
-  
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2020" class="archive-year">2020</a></h1>
-        </div>
-        <div class="post-list">
-    
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2020/03/10/Love2D-Input%E7%BB%91%E5%AE%9A%E5%AE%9E%E7%8E%B0/" >
-  Love2D Input绑定实现
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2020/03/10/Love2D-Input%E7%BB%91%E5%AE%9A%E5%AE%9E%E7%8E%B0/"><span class="article-date">
-  2020-03-10
-</span>
-</a>
-        
-
-        
-
-      </div>
-      <div class="article-entry">
-        
-          <h1 id="Input-lua-实现"><a href="#Input-lua-实现" class="headerlink" title="Input.lua 实现"></a><a href="https://github.com/adonaac/boipushy" target="_blank" rel="noopener">Input.lua</a> 实现</h1><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ol>
-<li>函数绑定到按键</li>
-<li>设置按键别名</li>
-<li>检测持续按下, 包括 从按下到开始检测的<code>delay</code> 和 经过<code>interval</code>再确认pressed是否正确</li>
-</ol>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>保存一个键位表 <code>Input.all_keys</code>, 和 love 的键位表完全一致</p>
-<p><code>binds</code> 以用户设置的<em>按键别名</em>为键, <em>按键集合</em>为值<br>保存针对不同按键而设立的表</p>
-<ol>
-<li><code>functions</code> 按键按下就会被唤醒</li>
-<li><code>state</code> 当前按键是否按下</li>
-<li><code>prev_state</code> 上次更新的时候按键是否按下</li>
-<li><code>repeat_state</code> 检测持续按下的时候, <ol>
-<li>上次按键按下并响应的时间点<code>pressed_time</code></li>
-<li>delay的长度</li>
-<li>当前的状态, 是否还处于delay检测, <code>delay_stage</code></li>
-<li>按键响应的间隔<code>interval</code></li>
-</ol>
-</li>
-</ol>
-<p>如此一来, 检查按键是否是当前更新突然按下的, 就是使用 <code>self.state[key] and not self.prev_state[key]</code></p>
-<h3 id="按键绑定"><a href="#按键绑定" class="headerlink" title="按键绑定"></a>按键绑定</h3><p>接受<code>key</code>和<code>action</code>参数<br>可以选择绑定到函数, 或者是字符串<br>检查<code>action</code>参数类型, 如果是函数, 那么将<code>functions</code>表的键<code>key</code>设置成这个参数<br>如果是字符串, 将字符串添加到<code>binds</code>对应的键的表中, 如果<code>binds[key]</code>不存在, 则先新建一个</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:bind</span><span class="params">(key, action)</span></span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(action) == <span class="string">'function'</span> <span class="keyword">then</span> self.functions[key] = action; <span class="keyword">return</span> <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> self.binds[action] <span class="keyword">then</span> self.binds[action] = &#123;&#125; <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">table</span>.<span class="built_in">insert</span>(self.binds[action], key)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>取消绑定<code>key</code>, 以<code>key</code>为参数, 也是一种合理的方法啦,<br>如果要取消绑定<code>action</code>, 直接<code>self.binds[action] = nil</code><br>按道理来说, 用户是有需要, 看到 action 绑定了哪些 key, 并且可以删除他们的, 所以<code>self.binds</code>是一个可以暴露的数据结构</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:unbind</span><span class="params">(key)</span></span></span><br><span class="line">    <span class="keyword">for</span> action, keys <span class="keyword">in</span> <span class="built_in">pairs</span>(self.binds) <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">for</span> i = #keys, <span class="number">1</span>, <span class="number">-1</span> <span class="keyword">do</span></span><br><span class="line">            <span class="keyword">if</span> key == self.binds[action][i] <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">table</span>.<span class="built_in">remove</span>(self.binds[action], i)</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span> self.functions[key] <span class="keyword">then</span></span><br><span class="line">        self.functions[key] = <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:unbindAll</span><span class="params">()</span></span></span><br><span class="line">    self.binds = &#123;&#125;</span><br><span class="line">    self.functions = &#123;&#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="检查按键是否按下"><a href="#检查按键是否按下" class="headerlink" title="检查按键是否按下"></a>检查按键是否按下</h3><p>简单方法<code>pressed</code><br><code>pressed</code>方法中有两个功能</p>
-<ol>
-<li>不传入<code>action</code>参数的情况下, 所有按下的按键，如果绑定了函数，就会被调用<br>这个过程在<code>update</code>已经被设置了, 用户无需调用</li>
-<li>检测<code>action</code>是否被按下, 就和之前说的, 通过<code>self.state[key] and not self.prev_state[key]</code><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:pressed</span><span class="params">(action)</span></span></span><br><span class="line">    <span class="keyword">if</span> action <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">for</span> _, key <span class="keyword">in</span> <span class="built_in">ipairs</span>(self.binds[action]) <span class="keyword">do</span></span><br><span class="line">            <span class="keyword">if</span> self.state[key] <span class="keyword">and</span> <span class="keyword">not</span> self.prev_state[key] <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">for</span> _, key <span class="keyword">in</span> <span class="built_in">ipairs</span>(Input.all_keys) <span class="keyword">do</span></span><br><span class="line">            <span class="keyword">if</span> self.state[key] <span class="keyword">and</span> <span class="keyword">not</span> self.prev_state[key] <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">if</span> self.functions[key] <span class="keyword">then</span></span><br><span class="line">                    self.functions[key]()</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>多功能方法<code>down</code><br>接收三个参数, <code>Input:down(action, interval, delay)</code><br><code>repeat_state</code>中, </p>
-<h3 id="回调hook"><a href="#回调hook" class="headerlink" title="回调hook"></a>回调hook</h3><p>新建自己Input的回调函数, 并且 hook 到 love 的回调函数中, <code>love[&#39;keypressed&#39;]</code>等同于<code>love.keypressed</code><br>这个过程在 new 的时候就被设置, </p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> callbacks = &#123;<span class="string">'keypressed'</span>, <span class="string">'keyreleased'</span>, <span class="string">'mousepressed'</span>, <span class="string">'mousereleased'</span>, <span class="string">'gamepadpressed'</span>, <span class="string">'gamepadreleased'</span>, <span class="string">'gamepadaxis'</span>, <span class="string">'wheelmoved'</span>, <span class="string">'update'</span>&#125;</span><br><span class="line"><span class="keyword">local</span> old_functions = &#123;&#125;</span><br><span class="line"><span class="keyword">local</span> empty_function = <span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> _, f <span class="keyword">in</span> <span class="built_in">ipairs</span>(callbacks) <span class="keyword">do</span></span><br><span class="line">    old_functions[f] = love[f] <span class="keyword">or</span> empty_function</span><br><span class="line">    love[f] = <span class="function"><span class="keyword">function</span><span class="params">(...)</span></span></span><br><span class="line">        old_functions[f](...)</span><br><span class="line">        self[f](self, ...)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">-- self的回调函数之后通过设置元表也可以</span></span><br><span class="line"><span class="keyword">return</span> <span class="built_in">setmetatable</span>(self, Input)</span><br></pre></td></tr></table></figure>
-
-<h3 id="callback-按键检测"><a href="#callback-按键检测" class="headerlink" title="callback 按键检测"></a>callback 按键检测</h3><p><code>&lt;device&gt;pressed</code> 和 <code>&lt;device&gt;released</code> 函数<br>pressed 被调用, 则设置该按键的<code>state</code>表值为<code>true</code><br>released 被调用, 则设置该按键的<code>state</code>表值为<code>false</code>, 以及取消重复检测的表<code>repeat_state</code></p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:keypressed</span><span class="params">(key)</span></span></span><br><span class="line">    self.state[key] = <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:keyreleased</span><span class="params">(key)</span></span></span><br><span class="line">    self.state[key] = <span class="literal">false</span></span><br><span class="line">    self.repeat_state[key] = <span class="literal">false</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="callback-update"><a href="#callback-update" class="headerlink" title="callback - update"></a>callback - update</h3><p>调用<code>self:pressed()</code>,<br>会更新<code>repeat_state</code>,<br>    如果在<code>delay_stage</code>, 检查是否超出<code>delay</code>时长并取消<code>delay_stage</code><br>    检查距离上次按键响应的时间是否超出<code>interval</code></p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Input:update</span><span class="params">()</span></span></span><br><span class="line">    self:pressed()</span><br><span class="line">    self.prev_state = copy(self.state)</span><br><span class="line">    self.state[<span class="string">'wheelup'</span>] = <span class="literal">false</span></span><br><span class="line">    self.state[<span class="string">'wheeldown'</span>] = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">pairs</span>(self.repeat_state) <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> v <span class="keyword">then</span></span><br><span class="line">            v.pressed = <span class="literal">false</span> </span><br><span class="line">            <span class="keyword">local</span> t = love.timer.getTime() - v.pressed_time</span><br><span class="line">            <span class="keyword">if</span> v.delay_stage <span class="keyword">then</span> </span><br><span class="line">                <span class="keyword">if</span> t &gt; v.delay <span class="keyword">then</span> </span><br><span class="line">                    v.pressed = <span class="literal">true</span> </span><br><span class="line">                    v.pressed_time = love.timer.getTime()</span><br><span class="line">                    v.delay_stage = <span class="literal">false</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">if</span> t &gt; v.interval <span class="keyword">then</span></span><br><span class="line">                    v.pressed = <span class="literal">true</span></span><br><span class="line">                    v.pressed_time = love.timer.getTime()</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>最后还有<code>joystick</code>的绑定这里没讲, 回去拿了手柄再来测试一下吧</p>
-
-        
-      </div>
-    </div>
-
-  
-
-  
-  
-    
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2020/03/09/OOP-in-Lua/" >
-  OOP in Lua
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2020/03/09/OOP-in-Lua/"><span class="article-date">
-  2020-03-09
-</span>
-</a>
-        
-
-        
-	<span class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li></ul>
-	</span>
-
-
-      </div>
-      <div class="article-entry">
-        
-          <h2 id="从类-表-中实例化"><a href="#从类-表-中实例化" class="headerlink" title="从类(表)中实例化"></a>从类(表)中实例化</h2><p>因为<code>__index</code>的存在,  可以将一个表的原型设置为当前的表, 这个过程只不过是<code>setmetatable(o, {__index = Class}</code>, 之后返回这个新表</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base.new</span><span class="params">(o)</span></span></span><br><span class="line">    <span class="keyword">local</span> o = o <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">    <span class="built_in">setmetatable</span>(o, &#123;<span class="built_in">__index</span> = Base&#125;)</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>但是这样有一点点缺陷, 每次都会创建一个这样的表, 有点麻烦, 我们可以单纯的使用<code>Base.__index = Base</code>, 然后将Base本身作为元表就好了</p>
-<p>当然, 我们可以把这个函数改为冒号形式, 函数体中的Base改为关键字<code>self</code>, 这样即便本身并不是 <code>Base</code> 的表, 通过元表获取并调用这个方法的时候, 还是将自身作为 <code>self</code> 传递到new中, 返回直接继承自身而不是Base的表, 也就是, 和基类无关</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base:new</span><span class="params">(o)</span></span></span><br><span class="line">    <span class="keyword">local</span> o = o <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">    self.<span class="built_in">__index</span> = self</span><br><span class="line">    <span class="built_in">setmetatable</span>(o, self)</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>其实更方便地, 为了让后面的可自定义初始化, 我们可以把 设置元表 和 初始化 的方法分开<br>就成了下面这样, 继承<code>Base</code>的类 还可以只自定义 init, 而不用更改已经既定的 <code>new</code> 过程</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base:new</span><span class="params">(o)</span></span></span><br><span class="line">    <span class="keyword">local</span> o = o <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">    self.<span class="built_in">__index</span> = self</span><br><span class="line">    <span class="built_in">setmetatable</span>(o, self)</span><br><span class="line">    o:init()</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base:init</span><span class="params">()</span></span></span><br><span class="line">    self.x = <span class="number">0</span></span><br><span class="line">    self.y = <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-<p><strong>静态变量</strong>：在类表中一开始就声明定义, 并且在new方法中, 不进行复制和更改罢了, 让新建的对象保持对这个变量的持续引用, 称作<em>公共变量</em>更加合适吧</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Base = &#123;</span><br><span class="line">    static = <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Base:new() &#123;</span><br><span class="line">    self.<span class="built_in">__index</span> = self</span><br><span class="line">    <span class="keyword">local</span> o = o <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">    o.example = </span><br><span class="line">    <span class="comment">-- init other variables for o --</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>如上的代码, 当一个table <code>Derive</code>使用了<code>Base:new()</code>, 这样他可以作为一个新的原型, 当又一个table <code>D2</code>, 使用<code>Derive:new()</code>, 因为self的缘故, 这里的self就是Derive, 这样一来, 为Derive添加可覆盖的方法, 可以做到继承</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Base = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base.Print</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"This is Base"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base:new</span><span class="params">(o)</span></span></span><br><span class="line">    <span class="keyword">local</span> o = o <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">    self.<span class="built_in">__index</span> = self <span class="comment">-- 即便设置了__index, 但它并没有元表</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">getmetatable</span>(self)) <span class="comment">-- 用于确认当前的元表是什么, 来判断当前的类</span></span><br><span class="line">    <span class="built_in">setmetatable</span>(o, self)</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Derive = Base:new()</span><br><span class="line">ex = Base:new()</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Derive.Print</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"This is Derive"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">D2 = Derive:new()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">D2.Print</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"This is D2"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">D2.Print()</span><br></pre></td></tr></table></figure>
-
-<h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><p>简单的, 就是把<code>__index(self, k)</code>改为访问一个基类列表的所有基类, 这个的<code>k</code>成员是否存在的函数, 如果存在, 则返回相应的值</p>
-<h2 id="接口-Interface-Mixins"><a href="#接口-Interface-Mixins" class="headerlink" title="接口 Interface Mixins"></a>接口 Interface Mixins</h2><p>其实就是多继承了一个只有函数的表, 如果这个Interface 必须要求实现的话, 可以在默认Interface的函数实现中, 抛出一个 <code>error(&#39;not implemented&#39;)</code><br>当然实现方法可以是遍历 Interface 中的函数, 然后把他赋值到自己的表中</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Object:implement</span><span class="params">(...)</span></span></span><br><span class="line">  <span class="keyword">for</span> _, cls <span class="keyword">in</span> <span class="built_in">pairs</span>(&#123;...&#125;) <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">pairs</span>(cls) <span class="keyword">do</span></span><br><span class="line">      <span class="keyword">if</span> self[k] == <span class="literal">nil</span> <span class="keyword">and</span> <span class="built_in">type</span>(v) == <span class="string">"function"</span> <span class="keyword">then</span></span><br><span class="line">        self[k] = v</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="私有化"><a href="#私有化" class="headerlink" title="私有化"></a>私有化</h2><p>在new函数里面创建函数和状态, 返回一个表, 让要公开的函数映射到表中, 不放在表中的内容则为私有</p>
-<h2 id="对偶表示"><a href="#对偶表示" class="headerlink" title="对偶表示"></a>对偶表示</h2><p>从表中使用键获取值, 改为 从一个数值表中以表作为键来获取对应的值<br>之后也在这个数据表中获取值, 让这个数据表变为一个模块的local变量, 也就是私有化, 能做到一定的封装<br>但是存在一个问题, 即便是对象表被销毁了, 数值表中对应对象表的值并没有销毁, 这时候需要垃圾收集</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">table</span>[key] = value</span><br><span class="line">value[<span class="built_in">table</span>] = key</span><br></pre></td></tr></table></figure>
-
-<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><h3 id="classic-lua"><a href="#classic-lua" class="headerlink" title="classic.lua"></a><a href="https://github.com/rxi/classic" target="_blank" rel="noopener">classic.lua</a></h3><ul>
-<li><code>Extend</code> - 约定, 以 <code>__</code> 开头的函数, 为可覆盖/重用的虚函数, 直接复制到新的对象cls, 其他内容使用metatable, 设置超集, 并且在 cls 写下记录 <code>cls.super = self</code></li>
-<li><code>new</code> - 用户自定义, 只是单纯的初始化, 叫做 <code>init</code> 更合适</li>
-<li><code>__call</code> - 这个就是用户调用的新建对象的方法了, 直接使用 <code>newclass = Class()</code>, 来新建一个对象, 其实是新建一个元表是 <code>Class</code> 的空表, 然后对这个空表, 调用 <code>new</code>, 来初始化, 最后返回, 这个是适当的做法</li>
-<li><code>is</code> - 递归 <code>getmetatable</code>, 不断检测和特定 class 是否一致</li>
-<li><code>Implement</code> - 接受可变参数指示多个Interface表, 对每个Interface表, 将其所有函数复制到自身, 这个。。不检测函数重名啊</li>
-</ul>
-<h3 id="hump-class"><a href="#hump-class" class="headerlink" title="hump.class"></a><a href="https://github.com/vrld/hump/" target="_blank" rel="noopener">hump.class</a></h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">include_helper</span><span class="params">(to, from, seen)</span></span></span><br><span class="line">	<span class="keyword">if</span> from == <span class="literal">nil</span> <span class="keyword">then</span></span><br><span class="line">		<span class="keyword">return</span> to</span><br><span class="line">	<span class="keyword">elseif</span> <span class="built_in">type</span>(from) ~= <span class="string">'table'</span> <span class="keyword">then</span></span><br><span class="line">		<span class="keyword">return</span> from</span><br><span class="line">	<span class="keyword">elseif</span> seen[from] <span class="keyword">then</span></span><br><span class="line">		<span class="keyword">return</span> seen[from]</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	seen[from] = to</span><br><span class="line">	<span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">pairs</span>(from) <span class="keyword">do</span></span><br><span class="line">		k = include_helper(&#123;&#125;, k, seen) <span class="comment">-- keys might also be tables</span></span><br><span class="line">		<span class="keyword">if</span> to[k] == <span class="literal">nil</span> <span class="keyword">then</span></span><br><span class="line">			to[k] = include_helper(&#123;&#125;, v, seen)</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">return</span> to</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- deeply copies `other' into `class'. keys in `other' that are already</span></span><br><span class="line"><span class="comment">-- defined in `class' are omitted</span></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">include</span><span class="params">(class, other)</span></span></span><br><span class="line">	<span class="keyword">return</span> include_helper(class, other, &#123;&#125;)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- returns a deep copy of `other'</span></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">clone</span><span class="params">(other)</span></span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">setmetatable</span>(include(&#123;&#125;, other), <span class="built_in">getmetatable</span>(other))</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>因为 table 和 function 在lua中, 单纯使用赋值运算符, 得到的是引用/地址, 因此如果要deep copy, 需要遍历并且递归表中的元素来进行拷贝</p>
-<ul>
-<li><code>include_helper(to, from, seen)</code> 这个递归代码… 其实就是将<code>from</code>表中所有的值都逐个递归拷贝到<code>to</code>中, 如果<code>from</code>中的键包含表, 那么将这个表进行拷贝, 如果<code>from</code>的值是个表, 建立一个空的表作为递归的<code>to</code>参数, 对其进行拷贝并返回</li>
-<li><code>include(class, other)</code> 使用<code>include_helper</code>递归函数, 进行拷贝后返回</li>
-<li><code>clone(other)</code> 使用<code>include</code>, 新建一个other的深拷贝</li>
-<li><code>new</code> 和<code>classic.lua</code>的<code>__call</code>逻辑一致, 新建一个表, 然后对其调用<code>init</code>方法来初始化, </li>
-</ul>
-<h3 id="middleclass-lua"><a href="#middleclass-lua" class="headerlink" title="middleclass.lua"></a><a href="https://github.com/kikito/middleclass" target="_blank" rel="noopener">middleclass.lua</a></h3><p><a href="https://github.com/kikito/middleclass/wiki/Mixins" target="_blank" rel="noopener">https://github.com/kikito/middleclass/wiki/Mixins</a></p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><a href="https://love2d.org/wiki/Simple_Educative_Class_Library" target="_blank" rel="noopener">https://love2d.org/wiki/Simple_Educative_Class_Library</a></p>
-<p>其他的之后用到在写了, 目前用到这么多足够了</p>
-
-        
-      </div>
-    </div>
-
-  
-
-  
-  
-    
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/" >
-  算法竞赛入门经典
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/"><span class="article-date">
-  2020-03-05
-</span>
-</a>
-        
-
-        
-
-      </div>
-      <div class="article-entry">
-        
-          <h2 id="Ch7-暴力求解法"><a href="#Ch7-暴力求解法" class="headerlink" title="Ch7 暴力求解法"></a>Ch7 暴力求解法</h2><h3 id="按字典序排列"><a href="#按字典序排列" class="headerlink" title="按字典序排列"></a>按字典序排列</h3><p>不使用 STL 的情况下，按从小到大的顺序遍历当前<strong>没有被使用过的元素 S</strong>，<br>把元素放进<strong>当前排列数组 A</strong>的<strong>当前元素位置 cur</strong>，递归向下继续搜索，<br>并且当前顺序下依然遍历中，在递归后，被覆写的 <strong>A</strong> 的范围，不会被当前遍历所访问到，因此子递归并不影响<br>如果达到集合终点，把之前所有的数组打印出来</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 考虑递归覆写的问题，可以忽略掉后续递归覆写的数据范围</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_sorted_perm</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> *A, <span class="keyword">int</span> cur)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cur == n) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d, "</span>, A[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> ok = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 因为只检测 数组中 0-cur</span></span><br><span class="line">        <span class="comment">// 范围内的值，所以后续递归，即便是覆写，也不会存在任何问题</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> j = <span class="number">0</span>; j &lt; cur; j++) &#123;</span><br><span class="line">            <span class="comment">// 查找 A 数组中是否包含当前数字，如果包含，则跳过当前数字</span></span><br><span class="line">            <span class="keyword">if</span> (A[j] == i)</span><br><span class="line">                ok = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ok) &#123;</span><br><span class="line">            A[cur] = i;</span><br><span class="line">            print_sorted_perm(n, A, cur + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>也可以使用 STL 中的函数，<code>next_permutation</code>，它在数组已经有序的状况下，更改末尾处，让元素不断与最开始无序的元素的之前的元素进行倒转返回，生成新的排列，直到集合彻底倒序，返回 false</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stl_permutation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keyword">int</span> n = <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">char</span> p[n + <span class="number">1</span>] = <span class="string">"thisaex"</span>;</span><br><span class="line">    sort(p, p + n, [](<span class="keyword">char</span> a, <span class="keyword">char</span> b) &#123; <span class="keyword">return</span> a &lt; b; &#125;);</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c "</span>, p[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">    &#125; <span class="keyword">while</span> (next_permutation(p, p + n));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="子集生成"><a href="#子集生成" class="headerlink" title="子集生成"></a>子集生成</h3><p>以下生成的子集，都包含了自身</p>
-<p>为了保证不重复，按顺序来，只选取<strong>比当前集合内所有元素更大的元素</strong>插入<br>每次插入新的元素，都进行一次<strong>打印</strong>，表示当前的子集</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 以 1 12 123 13 2 23 3 这样的顺序打印集合，按照顺序打印</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_subset</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>* A, <span class="keyword">int</span> cur)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cur; ++i) <span class="built_in">printf</span>(<span class="string">"%d "</span>, A[i]);</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 确定当前元素的最小可能值 得到开始的下一个集合元素</span></span><br><span class="line">    <span class="keyword">int</span> s = (cur ? A[cur - <span class="number">1</span>] : <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = s; i &lt; n; ++i) &#123;</span><br><span class="line">        A[cur] = i;</span><br><span class="line">        print_subset(n, A, cur + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_subset</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>* A = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    print_subset(n, A, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>因为子集就是，哪些元素依然存在 的组合，<br>我们每次分成两种情况-当前元素是否存在，再进行向下递归<br>使用 <strong>位向量</strong> 来保存哪些元素依然存在，生成子集，</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 生成子集，换而言之就是 哪些元素依然存在的可能性集合</span></span><br><span class="line"><span class="comment">// 因此遍历每个元素存在和不存在的情况，递归获取子集</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_subset_bitset</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>* B, <span class="keyword">int</span> cur)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cur; ++i)</span><br><span class="line">        <span class="keyword">if</span> (B[i]) <span class="built_in">printf</span>(<span class="string">"%d "</span>, i);</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = cur; i &lt; n; ++i) &#123;</span><br><span class="line">        B[i] = <span class="number">1</span>;</span><br><span class="line">        print_subset_bitset(n, B, cur + <span class="number">1</span>);</span><br><span class="line">        B[i] = <span class="number">0</span>;</span><br><span class="line">        print_subset_bitset(n, B, cur + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_subset_bitset</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *B = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    print_subset_bitset(n, B, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>更加简单的，就是使用二进制位，表示当前元素是否存在，<br>因为子集的数量就是 $2^n$，我们取从 $1 - 2^n$的数字，列出集合<br>判断 <strong>i 位</strong> 是否存在，来相应地表示集合 <strong>第 i 个元素</strong> 是否存在</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个集合打印包括 0</span></span><br><span class="line"><span class="comment">// 这个只是单纯的打印传过来的 集合s</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_subset_binary</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        <span class="keyword">if</span> (s &amp; (<span class="number">1</span> &lt;&lt; i)) <span class="built_in">printf</span>(<span class="string">"%d "</span>, i);</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_subset_binary</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 列出所有所有集合</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); ++i)</span><br><span class="line">        print_subset_binary(n, i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><h4 id="八皇后谜题"><a href="#八皇后谜题" class="headerlink" title="八皇后谜题"></a>八皇后谜题</h4><p>因为八皇后不可能有重复的列/行，因此每行每列，都有且仅有一个皇后<br>由此我们定义 <strong>数组 A[n]</strong>，索引表示列数，数组索引的元素 表示 当前列元素所处的行</p>
-<p>我们可以生成所有的排列，然后检查所有元素互相是否不在同一对角线上。<br>但这样每次生成排列数量会多，而且每次检查消耗时间也多</p>
-<p>我们可以在生成排列的同时，就检查当前元素和之前所有的元素是否都不在同一对角线上，<br>如果失败就返回，不继续生成这样的排列，这就是 <strong>回溯</strong></p>
-<p>如何检查和之前元素是否在同一对角线：<img src="pics/EightQueen.png" alt="对角线和副对角线"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 八皇后谜题，每行每列必然有一个皇后，由此，以数组下标作为列，数组元素作为行</span></span><br><span class="line"><span class="keyword">int</span> C[<span class="number">50</span>];</span><br><span class="line"><span class="comment">// 1 代表使用过</span></span><br><span class="line"><span class="keyword">int</span> v[<span class="number">3</span>][<span class="number">50</span>]; <span class="comment">// 保存 当前行，当前对角线，当前副对角线 是否有被占据</span></span><br><span class="line"><span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> nc = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span> cur)</span> </span>&#123;</span><br><span class="line">    ++nc;</span><br><span class="line">    <span class="keyword">if</span> (cur == n) &#123;</span><br><span class="line">        ++tot;</span><br><span class="line">        for_each(C, C + n, [](<span class="keyword">int</span> x) &#123; <span class="built_in">printf</span>(<span class="string">"%d "</span>, x + <span class="number">1</span>); &#125;);</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> ok = <span class="number">1</span>;</span><br><span class="line">            C[cur] = i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cur; ++j)</span><br><span class="line">                <span class="keyword">if</span> (C[j] == C[cur] || j - C[j] == cur - C[cur] ||</span><br><span class="line">                    j + C[j] == cur + C[cur]) &#123;</span><br><span class="line">                    ok = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span> (ok)</span><br><span class="line">                search(cur + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>每次都要遍历之前的元素来检查是否重合，实属浪费时间，<br>我们可以每次放置一个皇后，就把这个皇后所占据的行，对角线，副对角线都进行标记<br>但要切记，每次放置并标记，使用递归之后，要将之前的标记重置再继续</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1 代表使用过</span></span><br><span class="line"><span class="keyword">int</span> v[<span class="number">3</span>][<span class="number">50</span>]; <span class="comment">// 保存 当前行，当前对角线，当前副对角线 是否有被占据</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">search_faster</span><span class="params">(<span class="keyword">int</span> cur)</span> </span>&#123;</span><br><span class="line">    ++nc;</span><br><span class="line">    <span class="keyword">if</span> (cur == n) &#123;</span><br><span class="line">        ++tot;</span><br><span class="line">        for_each(C, C + n, [](<span class="keyword">int</span> x) &#123; <span class="built_in">printf</span>(<span class="string">"%d "</span>, x + <span class="number">1</span>); &#125;);</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> ok = <span class="number">1</span>;</span><br><span class="line">            C[cur] = i;</span><br><span class="line">            <span class="comment">// 行，副对角线，对角线（因为对角线单纯相减会超出边界的-(n-1)数量，因此使用 + n 来偏移</span></span><br><span class="line">            <span class="keyword">if</span> (!(v[<span class="number">0</span>][i] || v[<span class="number">1</span>][cur + i] || v[<span class="number">2</span>][cur - i + n])) &#123;</span><br><span class="line">                v[<span class="number">0</span>][i] = v[<span class="number">1</span>][cur + i] = v[<span class="number">2</span>][cur - i + n] = <span class="number">1</span>;</span><br><span class="line">                search_faster(cur + <span class="number">1</span>);</span><br><span class="line">                <span class="comment">// 记得替换回来</span></span><br><span class="line">                v[<span class="number">0</span>][i] = v[<span class="number">1</span>][cur + i] = v[<span class="number">2</span>][cur - i + n] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="应用-素数环"><a href="#应用-素数环" class="headerlink" title="应用 - 素数环"></a>应用 - 素数环</h4><p>一个小细节是，我们要注意素数环从 1 开始，而数组下标从 0 开始，<br>最好给自己下个规定，数组就从 0 开始，元素取当前索引 + 1</p>
-
-        
-      </div>
-    </div>
-
-  
-
-
-
-
-
-
-          <div class="main-footer">
-  
-    © 2020 银弹的个人博客 - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
-  
-</div>
-
-      
-        </div>
-      
-    </div>
-  </div>
-  
-<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
-
-  
-<link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
-
-
-  <!-- Root element of PhotoSwipe. Must have class pswp. -->
-  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe.
-             It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-      <!-- Container that holds slides.
-                PhotoSwipe keeps only 3 of them in the DOM to save memory.
-                Don't modify these 3 pswp__item elements, data is added later on. -->
-      <div class="pswp__container">
-        <div class="pswp__item"></div>
-        <div class="pswp__item"></div>
-        <div class="pswp__item"></div>
-      </div>
-
-      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-      <div class="pswp__ui pswp__ui--hidden">
-
-        <div class="pswp__top-bar">
-
-          <!--  Controls are self-explanatory. Order can be changed. -->
-
-          <div class="pswp__counter"></div>
-
-          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-          <button class="pswp__button pswp__button--share" title="Share"></button>
-
-          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-          <!-- element will get class pswp__preloader--active when preloader is running -->
-          <div class="pswp__preloader">
-            <div class="pswp__preloader__icn">
-              <div class="pswp__preloader__cut">
-                <div class="pswp__preloader__donut"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-          <div class="pswp__share-tooltip"></div>
-        </div>
-
-        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-
-        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
-
-        <div class="pswp__caption">
-          <div class="pswp__caption__center"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-<script src="/PhotoSwipe/photoswipe.js"></script>
-
-  
-<script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
-
-
-
-
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
-
-
-<script src="/scripts/main.js"></script>
-
-
-</body>
-</html>
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">银弹的个人博客</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">3</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">1</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div></div><div id="body-wrap"><nav class="not_index_bg" id="nav" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/archive.jpg)"><div id="page_site-info"><div id="site-title"><span class="blogtitle">Archives</span></div></div></nav><main id="content-outer"><div class="layout_page" id="content-inner"><div id="archive"><div class="article-sort-title">Articles - 3</div><div class="article-sort"><div class="article-sort-item year">2020</div><div class="article-sort-item"><div class="article-sort-img"><a class="article-sort-item__img" href="/2020/03/10/Love2D-Input%E7%BB%91%E5%AE%9A%E5%AE%9E%E7%8E%B0/"><img src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" alt="Love2D Input绑定实现"></a></div><div class="article-sort-post"><a class="article-sort-item__post" href="/2020/03/10/Love2D-Input%E7%BB%91%E5%AE%9A%E5%AE%9E%E7%8E%B0/"><i class="fa fa-clock-o" aria-hidden="true"></i><time class="article-sort-item__time">2020-03-10</time><div class="article-sort-item__title">Love2D Input绑定实现</div></a></div></div><div class="article-sort-item"><div class="article-sort-img"><a class="article-sort-item__img" href="/2020/03/09/OOP-in-Lua/"><img src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" alt="OOP in Lua"></a></div><div class="article-sort-post"><a class="article-sort-item__post" href="/2020/03/09/OOP-in-Lua/"><i class="fa fa-clock-o" aria-hidden="true"></i><time class="article-sort-item__time">2020-03-09</time><div class="article-sort-item__title">OOP in Lua</div></a></div></div><div class="article-sort-item"><div class="article-sort-img"><a class="article-sort-item__img" href="/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/"><img src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" alt="算法竞赛入门经典"></a></div><div class="article-sort-post"><a class="article-sort-item__post" href="/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/"><i class="fa fa-clock-o" aria-hidden="true"></i><time class="article-sort-item__time">2020-03-05</time><div class="article-sort-item__title">算法竞赛入门经典</div></a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"><div class="author-info__name">来自过去的银弹</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">3</div></a></div><div class="card-info-data-item is-center">      <a href="/tags/"><div class="headline">Tags</div><div class="length_num">1</div></a></div></div><div class="card-info-bookmark is-center"><a class="bookmark button--primary button--animated" id="bookmark-it" href="javascript:;" title="Add to bookmark" target="_self"><i class="fa fa-bookmark" aria-hidden="true"></i><span>Add to bookmark</span></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HYDlink" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a><a class="social-icon" href="mailto:508860736@qq.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a><a class="social-icon" href="/atom.xml" target="_blank"><i class="fa fa-rss" aria-hidden="true"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fa fa-bullhorn card-announcement-animation" aria-hidden="true"></i><span>Announcement</span></div><div class="announcement_content">感謝訪問本站，若喜歡請收藏 ^_^</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fa fa-history" aria-hidden="true"></i><span>Recent Post</span></div><div class="aside-recent-item"> <div class="aside-recent-post"><a href="/2020/03/10/Love2D-Input%E7%BB%91%E5%AE%9A%E5%AE%9E%E7%8E%B0/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="Love2D Input绑定实现" alt="Love2D Input绑定实现"></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/03/10/Love2D-Input%E7%BB%91%E5%AE%9A%E5%AE%9E%E7%8E%B0/" title="Love2D Input绑定实现">Love2D Input绑定实现</div><time class="aside-post_meta post-meta__date">2020-03-10</time></div></a></div><div class="aside-recent-post"><a href="/2020/03/09/OOP-in-Lua/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="OOP in Lua" alt="OOP in Lua"></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/03/09/OOP-in-Lua/" title="OOP in Lua">OOP in Lua</div><time class="aside-post_meta post-meta__date">2020-03-09</time></div></a></div><div class="aside-recent-post"><a href="/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="算法竞赛入门经典" alt="算法竞赛入门经典"></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/03/05/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8/" title="算法竞赛入门经典">算法竞赛入门经典</div><time class="aside-post_meta post-meta__date">2020-03-05</time></div></a></div></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fa fa-tags" aria-hidden="true"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Lua/" style="font-size: 16px; color: #999">Lua</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fa fa-archive" aria-hidden="true"></i><span>Archives</span></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/"><span class="archive-list-date">2020年03月</span><span class="archive-list-count">3</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fa fa-line-chart" aria-hidden="true"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">Article :</div><div class="webinfo-article-count">3</div></div><div class="webinfo-item"><div class="webinfo-runtime-name">Run time :</div><div class="webinfo-runtime-count" id="webinfo-runtime-count" start_date="6/7/2018 00:00:00">     </div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">UV :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">PV :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By 来自过去的银弹</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script></body></html>
